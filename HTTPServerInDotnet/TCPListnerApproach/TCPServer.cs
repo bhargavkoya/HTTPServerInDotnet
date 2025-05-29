@@ -10,22 +10,22 @@ namespace HTTPServerInDotnet.TCPListnerApproach
 {
     internal class TCPServer
     {
-        public static void Main(string[] args)
-        {
-            List<IPAddress> localIPs = GetLocalHostIPs();
-            TCPServer server = new TCPServer();
-            TcpListener tcpListner = new TcpListener(System.Net.IPAddress.Any, 8080);
-            server.Start(tcpListner);
-            while (true)
-            {
-               if(tcpListner.Pending())
-                {
-                  Console.WriteLine("Start processing a request");
-                    var socket = tcpListner.AcceptSocket();
-                    Task.Run(()=> ProcessRequest(socket));
-                }
-            }
-        }
+        //public static void Main(string[] args)
+        //{
+        //    List<IPAddress> localIPs = GetLocalHostIPs();
+        //    TCPServer server = new TCPServer();
+        //    TcpListener tcpListner = new TcpListener(System.Net.IPAddress.Any, 8080);
+        //    server.Start(tcpListner);
+        //    while (true)
+        //    {
+        //       if(tcpListner.Pending())
+        //        {
+        //          Console.WriteLine("Start processing a request");
+        //            var socket = tcpListner.AcceptSocket();
+        //            Task.Run(()=> ProcessRequest(socket));
+        //        }
+        //    }
+        //}
         
         public void Start(TcpListener server)
         {
