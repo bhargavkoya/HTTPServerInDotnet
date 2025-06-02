@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Net;
 using System.Text;
 using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace HttpServerInDotnet.HTTPListnerApproach
 {
@@ -53,7 +48,7 @@ namespace HttpServerInDotnet.HTTPListnerApproach
 
             // Handle requests concurrently
             var tasks = new List<Task>();
-            for (int i = 0; i < 10; i++) // Allow up to 10 concurrent connections
+            for (int i = 0; i < 10; i++) //10 concurrent connections at a time
             {
                 tasks.Add(HandleIncomingConnections());
             }
@@ -140,7 +135,6 @@ namespace HttpServerInDotnet.HTTPListnerApproach
             var path = request.Url.LocalPath;
             var method = request.HttpMethod;
 
-            // Check for /api/users/{id} pattern
             if (method == "GET" && path.StartsWith("/api/users/") && path.Length > "/api/users/".Length)
             {
                 handler = HandleGetUserById;
@@ -172,7 +166,7 @@ namespace HttpServerInDotnet.HTTPListnerApproach
 </head>
 <body>
     <h1>HTTP Server Running</h1>
-    <h2>Available Endpoints:</h2>
+    <h2>Available Endpoints in this server:</h2>
     <div class='endpoint'><strong>GET /</strong> - This page</div>
     <div class='endpoint'><strong>GET /api/users</strong> - Get all users</div>
     <div class='endpoint'><strong>GET /api/users/{id}</strong> - Get user by ID</div>

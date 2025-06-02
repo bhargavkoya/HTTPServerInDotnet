@@ -29,9 +29,9 @@ class Program
         {
             await serverTask;
         }
-        catch (OperationCanceledException)
+        catch (OperationCanceledException ex)
         {
-            // Expected when cancelling
+            Console.WriteLine("Server stopped with an exception."+ex.Message);
         }
 
         Console.WriteLine("Server stopped.");
